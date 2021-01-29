@@ -12,10 +12,12 @@ class UserInfo:
         self.make_file()
 
     def make_top(self):
-        pass
+        time_now =
+        first_string = "Отчет" + ' ' + company + '.' + '\n'
+        return first_string
 
     def make_second(self):
-        pass
+        second_string = name + ' ' + '<' + mail + '>' +
 
     def make_total_amount(self):
         pass
