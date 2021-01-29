@@ -9,6 +9,31 @@ class UserInfo:
         self.compl_tasks = compl_tasks
         self.remain_amount = remain_amount
         self.remain_tasks = remain_tasks0
+        self.make_file()
 
+    def make_top(self):
+        pass
 
-    def
+    def make_second(self):
+        pass
+
+    def make_total_amount(self):
+        pass
+
+    def make_compl_amount(self):
+        pass
+
+    def make_compl_list(self):
+        pass
+
+    def make_ramain_amount(self):
+        pass
+
+    def make_ramain_list(self):
+        pass
+
+    def make_file(self):
+        pass
+
+    def save_txt(self):
+        pass
