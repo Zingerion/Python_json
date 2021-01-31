@@ -10,6 +10,7 @@ class User_Info:
         self.remain_amount = remain_amount
         self.remain_tasks = remain_tasks
         self.make_top()
+        # self.create_time = create_time
         self.make_second()
         self.make_total_amount()
         self.make_compl_amount()
@@ -38,7 +39,13 @@ class User_Info:
         return compl_amount_str
 
     def make_compl_list(self):
-        compl_tasks_list = ('\n'.join(self.compl_tasks) + '\n\n')
+        compl_tasks_list = ''
+        for task in self.compl_tasks:
+            if len(task) > 48:
+                compl_tasks_list += task[0:48] + '...' + '\n'
+            else:
+                compl_tasks_list += task + '\n'
+        compl_tasks_list += '\n'
         return compl_tasks_list
 
     def make_ramain_amount(self):

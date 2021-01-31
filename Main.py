@@ -3,6 +3,7 @@ import datetime
 import json
 import pprint
 import User_Info
+import os
 
 # var = ['www.pythonru', 'com']
 # print ('\n'.join(var))
@@ -64,6 +65,12 @@ import User_Info
 #     filtered_todos = list(filter(keep, todos))
 #     json.dump(filtered_todos, data_file, indent=2)
 
+if not os.path.isdir("tasks"):
+    os.mkdir("tasks")
+
+if not "tasks" in os.getcwd():
+    os.chdir("tasks")
+
 todos_json = requests.get("https://json.medrating.org/todos")
 todos = json.loads(todos_json.text)
 
@@ -73,5 +80,5 @@ users = json.loads(users_json.text)
 # for user in users:
 #     pprint.pprint(user["name"])
 
-test_user = User_Info.User_Info("Test_Company", "Luis Costa", "gaymail@rot.com", 10, 9, ["1", "2", "3..."], 1,
+test_user = User_Info.User_Info("Test_Company", "Luis Costa", "gaymail@rot.com", 10, 9, ["1", "2", "123456789123456789123456789123456789123456789123456789"], 1,
                                 ["Gay_website", "Horse porn"])
