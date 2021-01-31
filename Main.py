@@ -73,4 +73,5 @@ users = json.loads(users_json.text)
 # for user in users:
 #     pprint.pprint(user["name"])
 
-test_user = User_Info.User_Info("Test_Company","Luis Costa","gaymail@rot.com",10,9,("1","2","3..."),1,"Gay_website")
+test_user = User_Info.User_Info("Test_Company", "Luis Costa", "gaymail@rot.com", 10, 9, ["1", "2", "3..."], 1,
+                                ["Gay_website", "Horse porn"])

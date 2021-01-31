@@ -20,13 +20,13 @@ class User_Info:
         self.save_txt()
 
     def make_top(self):
-        first_string = "Отчет" + ' ' + self.company + '.' + '\n'
+        first_string = "Отчет для" + ' ' + self.company + '.' + '\n'
         return first_string
 
     def make_second(self):
         today = datetime.datetime.today()
         proper_format_today = today.strftime("%d.%m.%Y %H:%M")
-        second_string = self.name + ' ' + '<' + self.mail + '>' + proper_format_today + '\n'
+        second_string = self.name + ' ' + '<' + self.mail + '>' + ' ' + proper_format_today + '\n'
         return second_string
 
     def make_total_amount(self):
@@ -38,7 +38,7 @@ class User_Info:
         return compl_amount_str
 
     def make_compl_list(self):
-        compl_tasks_list = ('\n'.join(str(self.compl_tasks)))
+        compl_tasks_list = ('\n'.join(self.compl_tasks) + '\n\n')
         return compl_tasks_list
 
     def make_ramain_amount(self):
@@ -46,7 +46,7 @@ class User_Info:
         return remain_amount_str
 
     def make_ramain_list(self):
-        remain_tasks_list = ('\n'.join(str(self.remain_tasks)))
+        remain_tasks_list = '\n'.join(self.remain_tasks)
         return remain_tasks_list
 
     def make_file(self):

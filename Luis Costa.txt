@@ -1,34 +1,12 @@
-Отчет Test_Company.
-Luis Costa <gaymail@rot.com>31.01.2021 23:11
+Отчет для Test_Company.
+Luis Costa <gaymail@rot.com> 01.02.2021 00:13
 Всего задач: 10
 
 Завершенные задачи: (9):
-(
-'
 1
-'
-,
- 
-'
 2
-'
-,
- 
-'
-3
-.
-.
-.
-'
-)Оставшиеся задачи: (1):
-G
-a
-y
-_
-w
-e
-b
-s
-i
-t
-e
+3...
+
+Оставшиеся задачи: (1):
+Gay_website
+Horse porn
