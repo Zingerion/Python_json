@@ -14,16 +14,16 @@ class User_Info:
         self.remain_amount = remain_amount
         self.remain_tasks = remain_tasks
         self.make_top()
-        # self.create_time = create_time
         self.make_second()
         self.make_total_amount()
         self.make_compl_amount()
         self.make_compl_list()
         self.make_ramain_amount()
         self.make_ramain_list()
-        self.make_file()
-        self.get_date_time()
-        self.save_txt()
+    self.make_file()
+    # self.get_date_time()
+
+    # self.save_txt()
 
     def make_top(self):
         first_string = "Отчет для" + ' ' + self.company + '.' + '\n'
@@ -72,19 +72,23 @@ class User_Info:
         return filed_file
 
     def get_date_time(self):
-        with open(self.username + ".txt", "r") as my_file:
-            my_file = my_file.readlines()[1]
-            date_from_file = re.search(r'\d{1,2}.\d{1,2}.\d{4}\s\d{2}:\d{2}', my_file)
-            date_from_file = date_from_file.group(0)
-            proper_format_date =  datetime.datetime.strptime(date_from_file,"%d.%m.%Y %H:%M")
-            proper_date = proper_format_date.strftime("%Y-%m-%dT%H-%M")
-        print(proper_date)
-        return proper_date
+        if (os.path.isfile(self.username + ".txt")):
+            with open(self.username + ".txt") as my_file:
+                my_file = my_file.readlines()[1]
+                date_from_file = re.search(r'\d{1,2}.\d{1,2}.\d{4}\s\d{2}:\d{2}', my_file)
+                date_from_file = date_from_file.group(0)
+                proper_format_date =  datetime.datetime.strptime(date_from_file,"%d.%m.%Y %H:%M")
+                proper_date = proper_format_date.strftime("%Y-%m-%dT%H-%M")
+                return proper_date
+
 
     def save_txt(self):
-        if not os.path.isfile(self.username + ".txt"):
-            my_file = open(self.username + ".txt", "x")
+        print(os.getcwd())
+        file_name = str(self.username + ".txt")
+        if not os.path.isfile(file_name):
+            my_file = open(file_name, "w")
             my_file.write(self.make_file())
             my_file.close()
         else:
-            os.rename(self.username + ".txt","old_" + self.username + "_" + self.get_date_time() + ".txt")
+            os.rename(file_name,"old_" + self.username + "_" + self.get_date_time() + ".txt")
+
