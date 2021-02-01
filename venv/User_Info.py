@@ -78,7 +78,7 @@ class User_Info:
             date = re.search(r'\d{1,2}.\d{1,2}.\d{4}', my_file)
             date = date.group(0)
             str_date = date.split()[0]
-            proper_format_date =  datetime.datetime.strptime(str_date, "%d.%m.%Y %H:%M")
+            proper_format_date =  datetime.datetime.strptime(str_date, "%d.%m.%Y")
 
             time = re.search(r'\d{2}:\d{2}', my_file)
             # print(date.group(0))
