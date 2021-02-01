@@ -3,6 +3,7 @@ import re
 import os
 import libs
 from threading import Thread
+import shutil
 
 class User_Info:
     def __init__(self,company,name,username,mail,amount,compl_amount,compl_tasks,remain_amount,remain_tasks):
@@ -74,8 +75,15 @@ class User_Info:
                 proper_date = proper_format_date.strftime("%Y-%m-%dT%H-%M")
                 return proper_date
 
+    def save_new_file(self,path,make_file_func):
+        new_user_file = open(path, "w")
+        new_user_file.write(make_file_func)
+        new_user_file.close()
+        return
+
     def save_txt(self):
         file_name = str(self.username + ".txt")
+        shutil.copy("D:\\test.txt", "D:\\folder")
         if not os.path.isfile(file_name):
             self.save_new_file(file_name,self.make_file())
         # if not os.path.isfile(file_name):
@@ -85,12 +93,12 @@ class User_Info:
         else:
             os.rename(file_name,"old_" + self.username + "_" + self.get_date_time() + ".txt")
 
-    def save_new_file(self,path,make_file_func):
-        new_user_file = open(path, "w")
-        new_user_file.write(make_file_func)
-        new_user_file.close()
-        return
 
 
-    def change_file_name(self):
-        pass
+    # thread1 = Thread(target=prescript, args=('f1.txt', 200,))
+    # thread2 = Thread(target=prescript, args=('f2.txt', 1000,))
+    #
+    # thread1.start()
+    # thread2.start()
+    # thread1.join()
+    # thread2.join()
