@@ -2,6 +2,8 @@ import datetime
 import re
 import os
 import libs
+from threading import Thread
+
 class User_Info:
     def __init__(self,company,name,username,mail,amount,compl_amount,compl_tasks,remain_amount,remain_tasks):
         self.company = company
@@ -14,6 +16,7 @@ class User_Info:
         self.remain_amount = remain_amount
         self.remain_tasks = remain_tasks
         self.save_txt()
+
     def make_top(self):
         first_string = "Отчет для" + ' ' + self.company + '.' + '\n'
         return first_string
@@ -60,6 +63,7 @@ class User_Info:
         filed_file = self.make_top() + self.make_second() + self.make_total_amount() + self.make_compl_amount() + self.make_compl_list() + self.make_ramain_amount() + self.make_ramain_list()
         return filed_file
 
+    #! Разбить на функции!!!
     def get_date_time(self):
         # if (os.path.isfile(self.username + ".txt")):
             with open(self.username + ".txt") as my_file:
@@ -73,9 +77,20 @@ class User_Info:
     def save_txt(self):
         file_name = str(self.username + ".txt")
         if not os.path.isfile(file_name):
-            my_file = open(file_name, "w")
-            my_file.write(self.make_file())
-            my_file.close()
+            self.save_new_file(file_name,self.make_file())
+        # if not os.path.isfile(file_name):
+        #     my_file = open(file_name, "w")
+        #     my_file.write(self.make_file())
+        #     my_file.close()
         else:
             os.rename(file_name,"old_" + self.username + "_" + self.get_date_time() + ".txt")
 
+    def save_new_file(self,path,make_file_func):
+        new_user_file = open(path, "w")
+        new_user_file.write(make_file_func)
+        new_user_file.close()
+        return
+
+
+    def change_file_name(self):
+        pass
