@@ -53,7 +53,13 @@ class User_Info:
         return remain_amount_str
 
     def make_ramain_list(self):
-        remain_tasks_list = '\n'.join(self.remain_tasks)
+        remain_tasks_list = ''
+        for task in self.remain_tasks:
+            if len(task) > 48:
+                remain_tasks_list += task[0:48] + '...' + '\n'
+            else:
+                remain_tasks_list += task + '\n'
+        remain_tasks_list += '\n'
         return remain_tasks_list
 
     def make_file(self):
