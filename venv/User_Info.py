@@ -83,15 +83,9 @@ class User_Info:
 
     def save_txt(self):
         file_name = str(self.username + ".txt")
-        shutil.copy("D:\\test.txt", "D:\\folder")
-        if not os.path.isfile(file_name):
-            self.save_new_file(file_name,self.make_file())
-        # if not os.path.isfile(file_name):
-        #     my_file = open(file_name, "w")
-        #     my_file.write(self.make_file())
-        #     my_file.close()
-        else:
-            os.rename(file_name,"old_" + self.username + "_" + self.get_date_time() + ".txt")
+        shutil.copy(file_name, "old_" + self.username + "_" + self.get_date_time() + ".txt")
+        self.save_new_file(file_name,self.make_file())
+        return
 
 
 
