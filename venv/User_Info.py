@@ -74,20 +74,17 @@ class User_Info:
     def get_date_time(self):
         with open(self.username + ".txt", "r") as my_file:
             my_file = my_file.readlines()[1]
-
-            date = re.search(r'\d{1,2}.\d{1,2}.\d{4}', my_file)
-            date = date.group(0)
-            str_date = date.split()[0]
-            proper_format_date =  datetime.datetime.strptime(str_date, "%d.%m.%Y")
-
-            time = re.search(r'\d{2}:\d{2}', my_file)
-            # print(date.group(0))
-            print (proper_format_date)
+            date_from_file = re.search(r'\d{1,2}.\d{1,2}.\d{4}\s\d{2}:\d{2}', my_file)
+            date_from_file = date_from_file.group(0)
+            proper_format_date =  datetime.datetime.strptime(date_from_file,"%d.%m.%Y %H:%M")
+            proper_date = proper_format_date.strftime("%Y-%m-%dT%H-%M")
+        print(proper_date)
+        return proper_date
 
     def save_txt(self):
-        if not os.path.isfile("tasks/BigDick.txt"):
-            my_file = open(self.username + ".txt", "w")
+        if not os.path.isfile(self.username + ".txt"):
+            my_file = open(self.username + ".txt", "x")
+            my_file.write(self.make_file())
+            my_file.close()
         else:
-            my_file = open(self.username + ".txt", "w")
-        my_file.write(self.make_file())
-        my_file.close()
+            os.rename(self.username + ".txt","old_" + self.username + "_" + self.get_date_time() + ".txt")
