@@ -1,8 +1,8 @@
 import datetime
 import re
 import os
+import libs
 class User_Info:
-
     def __init__(self,company,name,username,mail,amount,compl_amount,compl_tasks,remain_amount,remain_tasks):
         self.company = company
         self.name = name
@@ -13,18 +13,7 @@ class User_Info:
         self.compl_tasks = compl_tasks
         self.remain_amount = remain_amount
         self.remain_tasks = remain_tasks
-        self.make_top()
-        self.make_second()
-        self.make_total_amount()
-        self.make_compl_amount()
-        self.make_compl_list()
-        self.make_ramain_amount()
-        self.make_ramain_list()
-    self.make_file()
-    # self.get_date_time()
-
-    # self.save_txt()
-
+        self.save_txt()
     def make_top(self):
         first_string = "Отчет для" + ' ' + self.company + '.' + '\n'
         return first_string
@@ -72,7 +61,7 @@ class User_Info:
         return filed_file
 
     def get_date_time(self):
-        if (os.path.isfile(self.username + ".txt")):
+        # if (os.path.isfile(self.username + ".txt")):
             with open(self.username + ".txt") as my_file:
                 my_file = my_file.readlines()[1]
                 date_from_file = re.search(r'\d{1,2}.\d{1,2}.\d{4}\s\d{2}:\d{2}', my_file)
@@ -81,9 +70,7 @@ class User_Info:
                 proper_date = proper_format_date.strftime("%Y-%m-%dT%H-%M")
                 return proper_date
 
-
     def save_txt(self):
-        print(os.getcwd())
         file_name = str(self.username + ".txt")
         if not os.path.isfile(file_name):
             my_file = open(file_name, "w")
