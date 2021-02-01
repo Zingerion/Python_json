@@ -1,8 +1,12 @@
 import datetime
+import re
+import os
 class User_Info:
-    def __init__(self,company,name,mail,amount,compl_amount,compl_tasks,remain_amount,remain_tasks):
+
+    def __init__(self,company,name,username,mail,amount,compl_amount,compl_tasks,remain_amount,remain_tasks):
         self.company = company
         self.name = name
+        self.username = username
         self.mail = mail
         self.amount = amount
         self.compl_amount = compl_amount
@@ -18,6 +22,7 @@ class User_Info:
         self.make_ramain_amount()
         self.make_ramain_list()
         self.make_file()
+        self.get_date_time()
         self.save_txt()
 
     def make_top(self):
@@ -66,7 +71,23 @@ class User_Info:
         filed_file = self.make_top() + self.make_second() + self.make_total_amount() + self.make_compl_amount() + self.make_compl_list() + self.make_ramain_amount() + self.make_ramain_list()
         return filed_file
 
+    def get_date_time(self):
+        with open(self.username + ".txt", "r") as my_file:
+            my_file = my_file.readlines()[1]
+
+            date = re.search(r'\d{1,2}.\d{1,2}.\d{4}', my_file)
+            date = date.group(0)
+            str_date = date.split()[0]
+            proper_format_date =  datetime.datetime.strptime(str_date, "%d.%m.%Y %H:%M")
+
+            time = re.search(r'\d{2}:\d{2}', my_file)
+            # print(date.group(0))
+            print (proper_format_date)
+
     def save_txt(self):
-        my_file = open(self.name + ".txt", "w")
+        if not os.path.isfile("tasks/BigDick.txt"):
+            my_file = open(self.username + ".txt", "w")
+        else:
+            my_file = open(self.username + ".txt", "w")
         my_file.write(self.make_file())
         my_file.close()
