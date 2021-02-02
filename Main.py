@@ -43,13 +43,12 @@ def get_all_tasks(todos, users):
         all_users_info[user["id"]]["compl_amount"] = len(completed_task_list)
         all_users_info[user["id"]]["remain_tasks"] = remain_task_list
         all_users_info[user["id"]]["remain_amount"] = len(remain_task_list)
-    # pprint.pprint(all_users_info)
     return all_users_info
 
 
 get_all_tasks(todos, users)
 
-personal_info = ["name", "username", "mail"]
+personal_info = ["name", "username", "email"]
 
 
 def get_personal_info(users, all_users_info, search_info):
@@ -59,15 +58,23 @@ def get_personal_info(users, all_users_info, search_info):
         except KeyError:
             pass
 
-pprint.pprint(all_users_info)
-
 for i in personal_info:
     get_personal_info(users, all_users_info, i)
 
-# for i in all_users_info:
-#
-#     x = User_Info.User_Info(**all_users_info[i])
-#
+def get_company_name(users, all_users_info):
+    for user in users:
+        try:
+            all_users_info[user["id"]]["company"] = user["company"]["name"]
+        except KeyError:
+            pass
 
+get_company_name(users, all_users_info)
 
-
+pprint.pprint(all_users_info[1])
+for i in all_users_info:
+    try:
+        User_Info.User_Info(**all_users_info[i])
+        print(11)
+    except TypeError:
+        pass
+# x = User_Info.User_Info(**all_users_info[1])

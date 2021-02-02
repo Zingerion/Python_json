@@ -6,11 +6,11 @@ from threading import Thread
 import shutil
 
 class User_Info:
-    def __init__(self,company,name,username,mail,amount,compl_amount,compl_tasks,remain_amount,remain_tasks):
+    def __init__(self,company,name,username,email,amount,compl_amount,compl_tasks,remain_amount,remain_tasks):
         self.company = company
         self.name = name
         self.username = username
-        self.mail = mail
+        self.email = email
         self.amount = amount
         self.compl_amount = compl_amount
         self.compl_tasks = compl_tasks
@@ -25,7 +25,7 @@ class User_Info:
     def make_second(self):
         today = datetime.datetime.today()
         proper_format_today = today.strftime("%d.%m.%Y %H:%M")
-        second_string = self.name + ' ' + '<' + self.mail + '>' + ' ' + proper_format_today + '\n'
+        second_string = self.name + ' ' + '<' + self.email + '>' + ' ' + proper_format_today + '\n'
         return second_string
 
     def make_total_amount(self):
@@ -82,6 +82,7 @@ class User_Info:
 
     def save_txt(self):
         file_name = str(self.username + ".txt")
-        shutil.copy(file_name, "old_" + self.username + "_" + self.get_date_time() + ".txt")
+        if os.path.isfile(file_name):
+            shutil.copy(file_name, "old_" + self.username + "_" + self.get_date_time() + ".txt")
         self.save_new_file(file_name,self.make_file())
         return
