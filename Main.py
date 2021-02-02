@@ -58,8 +58,10 @@ def get_personal_info(users, all_users_info, search_info):
         except KeyError:
             pass
 
+
 for i in personal_info:
     get_personal_info(users, all_users_info, i)
+
 
 def get_company_name(users, all_users_info):
     for user in users:
@@ -68,13 +70,11 @@ def get_company_name(users, all_users_info):
         except KeyError:
             pass
 
+
 get_company_name(users, all_users_info)
 
-pprint.pprint(all_users_info[1])
 for i in all_users_info:
     try:
         User_Info.User_Info(**all_users_info[i])
-        print(11)
     except TypeError:
         pass
-# x = User_Info.User_Info(**all_users_info[1])
