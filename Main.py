@@ -22,8 +22,8 @@ users = json.loads(users_json.text)
 
 all_users_info = {}
 
-def get_all_tasks(todos, users):
 
+def get_all_tasks(todos, users):
     for user in users:
         completed_task_list = []
         remain_task_list = []
@@ -33,7 +33,6 @@ def get_all_tasks(todos, users):
                 if todo["userId"] == user["id"]:
                     if todo["completed"]:
                         completed_task_list.append(todo["title"])
-                        # pprint.pprint(completed_task_list)
                     else:
                         remain_task_list.append(todo["title"])
             except KeyError:
@@ -44,47 +43,31 @@ def get_all_tasks(todos, users):
         all_users_info[user["id"]]["compl_amount"] = len(completed_task_list)
         all_users_info[user["id"]]["remain_tasks"] = remain_task_list
         all_users_info[user["id"]]["remain_amount"] = len(remain_task_list)
-    pprint.pprint(all_users_info)
-
-
-def total_amount_task(taskt_list):
-    for key in taskt_list:
-        task_amount_per_user = len(taskt_list[key])
-        all_users_info.append({key: {"amount": task_amount_per_user}})
+    # pprint.pprint(all_users_info)
     return all_users_info
 
 
-# def compl_amount_tasks(taskt_list):
-#     for key in taskt_list:
-#         kk
-# pprint.pprint(get_all_tasks(todos, users))
 get_all_tasks(todos, users)
-# xx = get_all_tasks(todos, users)
 
-# pprint.pprint((xx))
-# pprint.pprint(total_amount_task(xx))
-# pprint.pprint(total_amount_task(xx))
+personal_info = ["name", "username", "mail"]
 
 
-def test_func(a, b, c):
-    print(a + b + c)
+def get_personal_info(users, all_users_info, search_info):
+    for user in users:
+        try:
+            all_users_info[user["id"]][search_info] = user[search_info]
+        except KeyError:
+            pass
+
+pprint.pprint(all_users_info)
+
+for i in personal_info:
+    get_personal_info(users, all_users_info, i)
+
+# for i in all_users_info:
+#
+#     x = User_Info.User_Info(**all_users_info[i])
+#
 
 
-LIST = ["Test_Company", "Luis Costa", "BigDick", "gaymail@rot.com", 10, 9, [
-    "С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.",
-    "2", "Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу"], 1,
-        [
-            "С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.",
-            "С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач."]]
-test_list = {"arg1": 1, "arg3": 3, "arg2": 2}
 
-test_obj = TEST.TEST(**test_list)
-# print(test_obj.arg3)
-
-test_user2 = User_Info.User_Info(*LIST)
-# test_user = User_Info.User_Info("Test_Company", "Luis Costa", "BigDick", "gaymail@rot.com", 10, 9, [
-#     "С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.",
-#     "2", "Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу"], 1,
-#                                 [
-#                                     "С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.",
-#                                     "С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач."])
