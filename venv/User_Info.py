@@ -66,7 +66,6 @@ class User_Info:
 
     #! Разбить на функции!!!
     def get_date_time(self):
-        # if (os.path.isfile(self.username + ".txt")):
             with open(self.username + ".txt") as my_file:
                 my_file = my_file.readlines()[1]
                 date_from_file = re.search(r'\d{1,2}.\d{1,2}.\d{4}\s\d{2}:\d{2}', my_file)
@@ -86,13 +85,3 @@ class User_Info:
         shutil.copy(file_name, "old_" + self.username + "_" + self.get_date_time() + ".txt")
         self.save_new_file(file_name,self.make_file())
         return
-
-
-
-    # thread1 = Thread(target=prescript, args=('f1.txt', 200,))
-    # thread2 = Thread(target=prescript, args=('f2.txt', 1000,))
-    #
-    # thread1.start()
-    # thread2.start()
-    # thread1.join()
-    # thread2.join()
