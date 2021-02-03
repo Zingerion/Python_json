@@ -42,16 +42,6 @@ for field in personal_info:
 API_func.get_company_name(users, all_users_info)
 
 
-amount = 0
-compl_amount = 0
-remain_amount =0
-
-compl_tasks=[]
-remain_tasks=[]
-
-var_test = User_Info.User_Info("company", "name", "username", "email", amount, compl_amount, compl_tasks, remain_amount, remain_tasks)
-
-
 # create files with every user' info from the global structure
 for user_info in all_users_info:
     try:
