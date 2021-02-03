@@ -48,43 +48,30 @@ class User_Info:
         return compl_amount_str
 
 
-    # creates string where all completed tasks are listed
-    def make_compl_list(self):
-        compl_tasks_list = ''
-        for task in self.compl_tasks:
-            if len(task) > 48:
-                compl_tasks_list += task[0:48] + '...' + '\n'
-            else:
-                compl_tasks_list += task + '\n'
-        compl_tasks_list += '\n'
-        return compl_tasks_list
-
-
     # creates string with amount of remaining tasks
     def make_ramain_amount(self):
         remain_amount_str = "Оставшиеся задачи: " + '(' + \
                             str(self.remain_amount) + '):' + '\n'
         return remain_amount_str
 
-
-    # creates string where all remaining tasks are listed
-    def make_ramain_list(self):
-        remain_tasks_list = ''
-        for task in self.remain_tasks:
+    # creates string where all required tasks are listed
+    def make_list(self,name, field):
+        name = ''
+        for task in field:
             if len(task) > 48:
-                remain_tasks_list += task[0:48] + '...' + '\n'
+                name += task[0:48] + '...' + '\n'
             else:
-                remain_tasks_list += task + '\n'
-        remain_tasks_list += '\n'
-        return remain_tasks_list
+                name += task + '\n'
+        name += '\n'
+        return name
 
 
     # joins all strings with user info
     def join_user_info(self):
         filed_file = self.make_file_header() + self.make_second() + \
                      self.make_total_amount() + self.make_compl_amount() + \
-                     self.make_compl_list() + self.make_ramain_amount() +\
-                     self.make_ramain_list()
+                     self.make_list("compl_tasks_list", self.compl_tasks) + self.make_ramain_amount() +\
+                     self.make_list("remain_tasks_list",self.remain_tasks)
         return filed_file
 
 
