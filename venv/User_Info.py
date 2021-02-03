@@ -29,9 +29,10 @@ class User_Info:
 
     #creates string with name, mail and current date info
     def make_second(self):
-        today = datetime.datetime.today()
+        today = datetime.datetime.now()
         proper_format_today = today.strftime("%d.%m.%Y %H:%M")
         second_string = self.name + ' ' + '<' + self.email + '>' + ' ' + proper_format_today + '\n'
+        print(proper_format_today)
         return second_string
 
 
