@@ -4,7 +4,6 @@ import os
 import User_Info
 import API_func
 
-
 # create dir if it doesn't exist
 if not os.path.isdir("tasks"):
     os.mkdir("tasks")
@@ -16,8 +15,8 @@ if not "tasks" in os.getcwd():
 
 
 # get json files to work with them
-todos_json = requests.get("https://json.medrating.org/todos")
-todos = json.loads(todos_json.text)
+tasks_json = requests.get("https://json.medrating.org/todos")
+tasks = json.loads(tasks_json.text)
 
 
 users_json = requests.get("https://json.medrating.org/users")
@@ -32,7 +31,7 @@ all_users_info = {}
 personal_info = ["name", "username", "email"]
 
 
-API_func.get_all_tasks_info(todos, users,all_users_info)
+API_func.get_all_tasks_info(tasks, users, all_users_info)
 
 
 for field in personal_info:
