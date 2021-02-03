@@ -8,38 +8,29 @@ import API_func
 if not os.path.isdir("tasks"):
     os.mkdir("tasks")
 
-
 # go to dir if we are not there
-if not "tasks" in os.getcwd():
+if"tasks" not in os.getcwd():
     os.chdir("tasks")
-
 
 # get json files to work with them
 tasks_json = requests.get("https://json.medrating.org/todos")
 tasks = json.loads(tasks_json.text)
 
-
 users_json = requests.get("https://json.medrating.org/users")
 users = json.loads(users_json.text)
-
 
 # global structure to store user's data for output
 all_users_info = {}
 
-
 # fields we need to get
 personal_info = ["name", "username", "email"]
 
-
 API_func.get_all_tasks_info(tasks, users, all_users_info)
-
 
 for field in personal_info:
     API_func.get_personal_info(users, all_users_info, field)
 
-
 API_func.get_company_name(users, all_users_info)
-
 
 # create files with every user' info from the global structure
 for user_info in all_users_info:
