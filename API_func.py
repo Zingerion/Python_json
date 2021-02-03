@@ -1,8 +1,8 @@
 """This file contains functions to get all info from json files """
+import pprint
 
-
-def get_all_tasks_info(tasks_list, users,all_users_info):
-    for user in users:
+def get_all_tasks_info(tasks_list, users_list,all_users_info):
+    for user in users_list:
         completed_task_list = []
         remain_task_list = []
         for task in tasks_list:
@@ -21,6 +21,7 @@ def get_all_tasks_info(tasks_list, users,all_users_info):
         all_users_info[user["id"]]["compl_amount"] = len(completed_task_list)
         all_users_info[user["id"]]["remain_tasks"] = remain_task_list
         all_users_info[user["id"]]["remain_amount"] = len(remain_task_list)
+        pprint.pprint(all_users_info)
     return all_users_info
 
 
